@@ -46,7 +46,7 @@
 
 int main(int argc, char *argv[])
 {
-    Q_INIT_RESOURCE(simpletreemodel);
+    Q_INIT_RESOURCE(treeview);
 
     QApplication app(argc, argv);
 
