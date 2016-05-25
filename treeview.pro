@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += widgets qml quick
+QT += qml quick
 CONFIG += c++11
 
 HEADERS     = treeitem.h \

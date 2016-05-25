@@ -54,6 +54,9 @@
 TreeModel::TreeModel(const QString &data, QObject *parent)
     : QAbstractItemModel(parent)
 {
+    m_roleNameMapping[TreeModelRoleName] = "title";
+    m_roleNameMapping[TreeModelRoleDescription] = "summary";
+
     QList<QVariant> rootData;
     rootData << "Title" << "Summary";
     rootItem = new TreeItem(rootData);
@@ -84,7 +87,7 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    if (role != Qt::DisplayRole)
+    if (role != TreeModelRoleName && role != TreeModelRoleDescription)
         return QVariant();
 
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
@@ -167,6 +170,11 @@ int TreeModel::rowCount(const QModelIndex &parent) const
     return parentItem->childCount();
 }
 //! [8]
+
+QHash<int, QByteArray> TreeModel::roleNames() const
+{
+    return m_roleNameMapping;
+}
 
 void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
 {
