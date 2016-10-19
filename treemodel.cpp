@@ -92,7 +92,7 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
 
-    return item->data(index.column());
+    return item->data(role - Qt::UserRole - 1);
 }
 //! [3]
 
