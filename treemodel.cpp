@@ -48,6 +48,8 @@
 #include "treeitem.h"
 #include "treemodel.h"
 
+#include "customtype.h"
+
 #include <QStringList>
 
 //! [0]
@@ -176,6 +178,16 @@ QHash<int, QByteArray> TreeModel::roleNames() const
     return m_roleNameMapping;
 }
 
+QVariant TreeModel::newCustomType(const QString &text, int position)
+{
+    CustomType *t = new CustomType(this);
+    t->setText(text);
+    t->setIndentation(position);
+    QVariant v;
+    v.setValue(t);
+    return v;
+}
+
 void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
 {
     QList<TreeItem*> parents;
@@ -200,7 +212,7 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
             QStringList columnStrings = lineData.split("\t", QString::SkipEmptyParts);
             QList<QVariant> columnData;
             for (int column = 0; column < columnStrings.count(); ++column)
-                columnData << columnStrings[column];
+                columnData << newCustomType(columnStrings[column], position);
 
             if (position > indentations.last()) {
                 // The last child of the current parent is now the new parent

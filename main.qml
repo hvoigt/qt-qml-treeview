@@ -10,6 +10,7 @@ ApplicationWindow {
     TreeView {
         anchors.fill: parent
         model: theModel
+        itemDelegate: TreeDelegate {}
 
         TableViewColumn {
             role: "title"

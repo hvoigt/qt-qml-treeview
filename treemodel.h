@@ -75,6 +75,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
+    QVariant newCustomType(const QString &text, int position);
     void setupModelData(const QStringList &lines, TreeItem *parent);
 
     TreeItem *rootItem;

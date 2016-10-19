@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>default.txt</file>
         <file>main.qml</file>
+        <file>TreeDelegate.qml</file>
     </qresource>
 </RCC>

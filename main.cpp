@@ -39,6 +39,7 @@
 ****************************************************************************/
 
 #include "treemodel.h"
+#include "customtype.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -58,6 +59,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("theModel",&model);
+    qmlRegisterType<CustomType>("hvoigt.net", 1, 0, "CustomType");
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
